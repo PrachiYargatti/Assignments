@@ -103,6 +103,15 @@ FROM courses
 WHERE start_date > CURDATE()
 ORDER BY start_date ASC;
 
++-----------+---------------------+-------------------------------------+------+------------+------------+-------------------+
+| course_id | course_name         | description                         | fees | start_date | end_date   | video_expire_days |
++-----------+---------------------+-------------------------------------+------+------------+------------+-------------------+
+|       201 | Advanced React      | Deep dive into React and Hooks      | 5000 | 2025-12-20 | 2026-01-31 |                60 |
+|       202 | Machine Learning    | ML algorithms and hands-on projects | 6500 | 2025-12-25 | 2026-02-15 |                75 |
+|       203 | Cloud Architecture  | Designing scalable cloud systems    | 7000 | 2026-01-05 | 2026-03-01 |                90 |
+|       204 | DevOps Fundamentals | CI/CD, Docker, Kubernetes           | 5500 | 2026-01-10 | 2026-02-28 |                60 |
++-----------+---------------------+-------------------------------------+------+------------+------------+-------------------+
+
 -- Q2) Write a Sql query that will fetch all the registered students along with course name
 SELECT
     s.reg_no,
@@ -114,6 +123,15 @@ SELECT
 FROM students s
 INNER JOIN courses c ON s.course_id = c.course_id;
 
++--------+--------+--------------------+------------+-----------+-------------------+
+| reg_no | name   | email              | mobile_no  | course_id | course_name       |
++--------+--------+--------------------+------------+-----------+-------------------+
+|      1 | Rahul  | rahul@student.com  | 9876543214 |       105 | AI Foundations    |
+|      2 | Aisha  | aisha@student.com  | 9876543215 |       106 | SQL & Databases   |
+|      3 | Vikram | vikram@student.com | 9876543216 |       107 | Cybersecurity 101 |
+|      4 | Meera  | meera@student.com  | 9876543217 |       108 | Cloud Essentials  |
++--------+--------+--------------------+------------+-----------+-------------------+
+
 -- Q3) Write an SQL query to fetch the complete details of a student (based on their email) along with the details
 -- of the course they are enrolled in.
 
@@ -121,6 +139,12 @@ SELECT *
 FROM students s
 INNER JOIN courses c ON s.course_id = c.course_id
 WHERE s.email = 'meera@student.com';
+
++--------+-------+-------------------+-----------+------------+--------------------------+-----------+------------------+--------------------------------+------+------------+------------+-------------------+
+| reg_no | name  | email             | course_id | mobile_no  | profile_pic              | course_id | course_name      | description                    | fees | start_date | end_date   | video_expire_days |
++--------+-------+-------------------+-----------+------------+--------------------------+-----------+------------------+--------------------------------+------+------------+------------+-------------------+
+|      4 | Meera | meera@student.com |       108 | 9876543217 | NULL                     |       108 | Cloud Essentials | AWS fundamentals & deployments | 4800 | 2025-02-05 | 2025-03-25 |                40 |
++--------+-------+-------------------+-----------+------------+--------------------------+-----------+------------------+--------------------------------+------+------------+------------+-------------------+
 
 -- Q4) Write an SQL query to retrieve the course details and the list of non-expired videos for a specific student
 -- using their email address. A video is considered active (not expired) if its added_at date plus the course’s
